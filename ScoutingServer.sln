@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{25028B75-5953-46C9-9289-771944EDC6B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowedApplication", "WindowedApplication\WindowedApplication.csproj", "{F3272F60-FC33-47F1-9AC5-C1D7A624A0A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowedApplication", "WindowedApplication\WindowedApplication.csproj", "{F3272F60-FC33-47F1-9AC5-C1D7A624A0A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
