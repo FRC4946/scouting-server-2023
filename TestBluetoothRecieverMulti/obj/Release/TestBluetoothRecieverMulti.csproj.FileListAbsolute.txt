@@ -1,0 +1,8 @@
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\bin\Release\TestBluetoothRecieverMulti.exe.config
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\bin\Release\TestBluetoothRecieverMulti.exe
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\bin\Release\TestBluetoothRecieverMulti.pdb
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\bin\Release\InTheHand.Net.Personal.dll
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\bin\Release\InTheHand.Net.Personal.xml
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\obj\Release\TestBluetoothRecieverMulti.exe
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\obj\Release\TestBluetoothRecieverMulti.pdb
+C:\Users\Jacob\Documents\Visual Studio 2015\Projects\TestBluetoothRecieverMulti\TestBluetoothRecieverMulti\obj\Release\TestBluetoothRecieverMulti.csprojResolveAssemblyReference.cache
