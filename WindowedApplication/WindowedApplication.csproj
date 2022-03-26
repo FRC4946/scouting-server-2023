@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AlphaDogs.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="AlphaDogs.ico" />
+  </ItemGroup>
+
+</Project>
