@@ -23,7 +23,7 @@ using System.Text.RegularExpressions;
 //TODO : make headers better and more easily modifiable
 //TODO : fix stream write
 
-namespace TestBluetoothRecieverMulti
+namespace ScoutingServer
 {
     class Program
     {
