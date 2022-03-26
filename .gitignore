@@ -1,0 +1,6 @@
+# Don't track bin or objects
+bin
+obj
+
+# Ignore workspace files
+.vs
