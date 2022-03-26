@@ -28,11 +28,19 @@ namespace TestBluetoothRecieverMulti
     class Program
     {
         //CONSTANTS
-        public static readonly int UI_WIDTH = 60; //the maximum width in characters for the UI
-        public static readonly int UI_REFRESH = 1000; //the number of milliseconds between each refresh of the UI
-        public static readonly int UI_EVENT_LENGTH = 5; //the number of items to display on the eventList
-        public static readonly int MAX_DEVICES_SCAN = 20; //The max number of bluetooth devices that the code will scan for whe determining device identities
+        public const int UI_WIDTH = 60; //the maximum width in characters for the UI
+        public const int UI_REFRESH = 1000; //the number of milliseconds between each refresh of the UI
+        public const int UI_EVENT_LENGTH = 5; //the number of items to display on the eventList
+        public const int MAX_DEVICES_SCAN = 20; //The max number of bluetooth devices that the code will scan for whe determining device identities
         public static readonly Guid BLUETOOTH_UID = new Guid("{39675b0d-6dd8-4622-847f-3e5acc607e27}"); //default uid
+        
+        /// <summary>
+        /// Headers for csv
+        /// </summary>
+        public const string HEADERS = "Team_Number,Alliance_Colour,Match_Number,Scout_Name,Crossed_Auto_Line," +
+            "Auto_Balls,Auto_Balls_Shot,Far_Balls,Far_Balls_Shot,Tarmac_Balls,Tarmac_Balls_Shot,Close_Balls," +
+            "Close_Balls_Shot,Protected_Zone_Balls,Protected_Zone_Balls_Shot,Active_Defence_Time,Defence_Time," +
+            "Defended_Teams,Climb_Time,Rung_Level,Foul_Count,\n";
 
         public static volatile bool bluetoothEnabled = false; //is bluetooth enabled, default value is no, this is here cause BluetoothInterface doesnt initialize without bluetooth (error prevention purposes essentially)
         public static volatile bool bluetoothPrevEnabled = false; //was bluetooth previously enabled, used to detect rising or falling edge of signal
@@ -583,7 +591,7 @@ namespace TestBluetoothRecieverMulti
             {
                 lock (messageWriteLock) //locks to avoid confliscts
                 {
-                    File.WriteAllText("ScoutingInfo.csv", "Team_Number,Color,Match_Number,Scout_Name,Crossed_Auto_Line,Auto_Balls_Scored,Auto_Shots,Trench_Balls_Scored,Trench_Shots,Mid_Field_Balls_Scored,Mid_Field_Shots,Front_Port_Balls_Scored,Front_Port_Shots,Active_Defence_Time,Defence_Time,Climb_Time,Climb_Type,\n"); //writes headers
+                    File.WriteAllText("ScoutingInfo.csv", Program.HEADERS); //writes headers
                 }
             }
             foreach (string s in messages) //iterates through messages in messages
@@ -612,7 +620,7 @@ namespace TestBluetoothRecieverMulti
                                     {
                                         if (!(File.Exists("AdditionalScoutingInfo_" + fileNum + ".csv"))) //if file doesnt yet exist. add headers
                                         {
-                                            File.WriteAllText("AdditionalScoutingInfo_" + fileNum + ".csv", "Team_Number,Color,Match_Number,Scout_Name,Crossed_Auto_Line,Auto_Balls_Scored,Auto_Shots,Trench_Balls_Scored,Trench_Shots,Mid_Field_Balls_Scored,Mid_Field_Shots,Front_Port_Balls_Scored,Front_Port_Shots,Active_Defence_Time,Defence_Time,Climb_Time,Climb_Type,\n"); //writes headers
+                                            File.WriteAllText("AdditionalScoutingInfo_" + fileNum + ".csv", Program.HEADERS); //writes headers
                                         }
                                         File.AppendAllText("AdditionalScoutingInfo_" + fileNum + ".csv", line + "\n"); //appends the unwritten message to the backup file
                                         end = true; //it is now ok for the program to end
