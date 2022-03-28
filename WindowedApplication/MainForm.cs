@@ -118,8 +118,17 @@ namespace WindowedApplication
 
             _Logging.Nodes.AddRange(new TreeNode[] { _LogFile, _LoggerRunning });
 
+            // about node
+            var about = new TreeNode("About");
+
+            var author = new TreeNode("Jacob Klimczak - 2022");
+
+            var team = new TreeNode("The Alpha Dogs");
+
+            about.Nodes.AddRange(new TreeNode[] { author, team });
+
             // add to tree
-            statusTree.Nodes.AddRange(new TreeNode[] { _Application, _Bluetooth, _Logging });
+            statusTree.Nodes.AddRange(new TreeNode[] { _Application, _Bluetooth, _Logging, about });
 
             // expand all
             statusTree.ExpandAll();
