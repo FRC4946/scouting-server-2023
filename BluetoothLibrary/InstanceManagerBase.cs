@@ -50,7 +50,7 @@ namespace BluetoothLibrary
 
         private Thread _Listener, _Logger;
 
-        private readonly object LISTEN_LOCK = new object(), QUEUE_LOCK = new object(), LOG_LOCK = new object();
+        private readonly object LISTEN_LOCK = new object(), QUEUE_LOCK = new object(), LOG_LOCK = new object(), INSTANCE_LOCK = new object();
 
         private ManualResetEvent _Exit = new ManualResetEvent(false), _NewMessages = new ManualResetEvent(false);
 
@@ -193,9 +193,22 @@ namespace BluetoothLibrary
         private void _AddInstance(BluetoothClient c)
         {
             var instance = new BluetoothInstance(this);
-            _Instances.Add(instance);
+            lock (INSTANCE_LOCK)
+                _Instances.Add(instance);
             ConfigureInstance(instance);
             instance.HandleConnection(c);
+        }
+
+        /// <summary>
+        /// Removes a bluetooth instance
+        /// </summary>
+        /// <param name="b">
+        /// the instance to remove
+        /// </param>
+        internal void RemoveInstance(BluetoothInstance b)
+        {
+            lock (INSTANCE_LOCK)
+                _Instances.Remove(b);
         }
 
         /// <summary>

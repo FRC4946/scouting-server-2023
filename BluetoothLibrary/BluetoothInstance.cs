@@ -167,6 +167,9 @@ namespace BluetoothLibrary
                 lock (CLOSE_LOCK)
                     _Open = false;
             }
+
+            // removes this instance from management
+            Manager.RemoveInstance(this);
         }
 
         /// <summary>
