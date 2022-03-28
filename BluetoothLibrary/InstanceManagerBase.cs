@@ -36,6 +36,11 @@ namespace BluetoothLibrary
         /// </summary>
         public bool Listening { get => _Listening; }
 
+        /// <summary>
+        /// Whether this manager is currently logging
+        /// </summary>
+        public bool Logging { get => _Logging; }
+
         private bool _Listening = false, _Logging = true;
 
         private Thread _Listener, _Logger;

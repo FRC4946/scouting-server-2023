@@ -47,5 +47,52 @@ namespace BluetoothLibrary
             }
         }
 
+        /// <summary>
+        /// Gets the MAC address of this machine
+        /// </summary>
+        public static string MAC
+        {
+            get
+            {
+                return _Interpolate(BluetoothRadio.PrimaryRadio.LocalAddress.ToString(), 2, ':');
+            }
+        }
+
+        /// <summary>
+        /// Interpolates a string with the specified char
+        /// </summary>
+        /// <param name="s">
+        /// string to interpolate
+        /// </param>
+        /// <param name="iteration">
+        /// frequency of interpolation
+        /// </param>
+        /// <param name="insert">
+        /// char to insert
+        /// </param>
+        /// <returns>
+        /// the interpolated string
+        /// </returns>
+        private static string _Interpolate(string s, int iteration, char insert)
+        {
+            List<char> charList = new List<char>(s.ToCharArray());
+
+            int counter = 0;
+            int compensation = 0;
+
+            while (counter + compensation < charList.Count)
+            {
+                if (counter > 0 && ((counter + compensation) % iteration) == (compensation % iteration))
+                {
+                    charList.Insert(counter + compensation, insert);
+                    compensation += 1;
+                }
+                counter += 1;
+            }
+
+            return new string(charList.ToArray());
+
+        }
+
     }
 }
