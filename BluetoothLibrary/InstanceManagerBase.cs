@@ -41,6 +41,11 @@ namespace BluetoothLibrary
         /// </summary>
         public bool Logging { get => _Logging; }
 
+        /// <summary>
+        /// Number of milliseconds before listener refreshes
+        /// </summary>
+        public int ListenerRefresh { get; set; } = 1000;
+
         private bool _Listening = false, _Logging = true;
 
         private Thread _Listener, _Logger;
@@ -88,12 +93,19 @@ namespace BluetoothLibrary
             while (Bluetooth.Enabled && Listening)
             {
                 var t = listener.BeginAcceptBluetoothClient(_ListenCallback, listener);
-                WaitHandle.WaitAny(new WaitHandle[] { t.AsyncWaitHandle, _Exit });
+                WaitHandle.WaitAny(new WaitHandle[] { t.AsyncWaitHandle, _Exit }, ListenerRefresh);
             }
 
             lock (LISTEN_LOCK)
                 _Listening = false;
-            listener.Stop();
+            try
+            {
+                listener.Stop();
+            }
+            catch
+            {
+
+            }
         }
 
         /// <summary>

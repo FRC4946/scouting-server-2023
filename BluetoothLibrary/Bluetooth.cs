@@ -54,7 +54,17 @@ namespace BluetoothLibrary
         {
             get
             {
-                return _Interpolate(BluetoothRadio.PrimaryRadio.LocalAddress.ToString(), 2, ':');
+                try
+                {
+                    if (BluetoothRadio.PrimaryRadio != null && BluetoothRadio.PrimaryRadio.LocalAddress != null)
+                        return _Interpolate(BluetoothRadio.PrimaryRadio.LocalAddress.ToString(), 2, ':');
+                }
+                catch
+                {
+
+                }
+                return "Bluetooth Not Enabled";
+
             }
         }
 

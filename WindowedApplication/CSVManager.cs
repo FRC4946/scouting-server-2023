@@ -25,7 +25,7 @@ namespace WindowedApplication
         /// </summary>
         public CSVScoutingLog<Message2022> CurrentLog { get => _Log; }
 
-        private List<string> _Errors = new List<string>() { "ERRORS SHOW UP HERE" };
+        private List<string> _Errors = new List<string>();
 
         private readonly object ERROR_LOCK = new object();
 
@@ -49,7 +49,7 @@ namespace WindowedApplication
             var index = path.LastIndexOf(sep);
             if (index > -1)
             {
-                _DesiredName = path.Substring(0, index + 1);
+                _DesiredName = path.Substring(0, index);
             }
             else
             {

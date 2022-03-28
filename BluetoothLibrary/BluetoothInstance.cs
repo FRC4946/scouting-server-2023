@@ -47,7 +47,7 @@ namespace BluetoothLibrary
         /// <summary>
         /// When this instance was last accessed
         /// </summary>
-        public DateTime LastAccessed { get; }
+        public DateTime LastAccessed { get => _LastAccessed; }
 
         /// <summary>
         /// Milliseconds to sleep when no data is on socket
@@ -120,6 +120,7 @@ namespace BluetoothLibrary
             lock (CLOSE_LOCK)
                 _Open = true;
 
+            _Opened = DateTime.Now;
             _LastAccessed = DateTime.Now;
 
             var builder = new StringBuilder();
@@ -188,7 +189,7 @@ namespace BluetoothLibrary
                 
                 // check whether to close
 
-                if (line.Trim().Remove('\n').Remove('\r') == "end")
+                if (line.Trim().Replace("\n", "").Replace("\r", "") == "end")
                 {
                     // end connection
                     lock (CLOSE_LOCK)

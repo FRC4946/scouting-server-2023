@@ -27,6 +27,8 @@ namespace BluetoothLibrary.Messages
         /// </returns>
         public static T FromCSV<T>(string csv) where T : ScoutingMessageBase, new()
         {
+            if (csv.EndsWith("\n"))
+                csv = csv.Remove(csv.Length - 1, 1);
             var t = new T();
             var fields = csv.Split(',');
             var info = _GetScoutingProperties(typeof(T));
