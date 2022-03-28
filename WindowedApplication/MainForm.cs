@@ -120,6 +120,9 @@ namespace WindowedApplication
 
             // add to tree
             statusTree.Nodes.AddRange(new TreeNode[] { _Application, _Bluetooth, _Logging });
+
+            // expand all
+            statusTree.ExpandAll();
         }
 
         /// <summary>
