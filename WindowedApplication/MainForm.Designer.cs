@@ -40,6 +40,8 @@ namespace WindowedApplication
             this.errors = new System.Windows.Forms.ListView();
             this.errorColumn = new System.Windows.Forms.ColumnHeader();
             this.statusTree = new System.Windows.Forms.TreeView();
+            this.connectionColumn = new System.Windows.Forms.ColumnHeader();
+            this.connections = new System.Windows.Forms.ListView();
             this.status.SuspendLayout();
             this.strip.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +88,7 @@ namespace WindowedApplication
             // 
             // refreshTimer
             // 
-            this.refreshTimer.Interval = 2500;
+            this.refreshTimer.Interval = 2000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
             // errors
@@ -114,8 +116,28 @@ namespace WindowedApplication
             this.statusTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusTree.Location = new System.Drawing.Point(355, 28);
             this.statusTree.Name = "statusTree";
-            this.statusTree.Size = new System.Drawing.Size(445, 396);
+            this.statusTree.Size = new System.Drawing.Size(445, 191);
             this.statusTree.TabIndex = 4;
+            // 
+            // connectionColumn
+            // 
+            this.connectionColumn.Text = "Connections";
+            this.connectionColumn.Width = 350;
+            // 
+            // connections
+            // 
+            this.connections.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.connectionColumn});
+            this.connections.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.connections.FullRowSelect = true;
+            this.connections.GridLines = true;
+            this.connections.HideSelection = false;
+            this.connections.Location = new System.Drawing.Point(355, 219);
+            this.connections.Name = "connections";
+            this.connections.Size = new System.Drawing.Size(445, 205);
+            this.connections.TabIndex = 5;
+            this.connections.UseCompatibleStateImageBehavior = false;
+            this.connections.View = System.Windows.Forms.View.Details;
             // 
             // MainForm
             // 
@@ -123,6 +145,7 @@ namespace WindowedApplication
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.statusTree);
+            this.Controls.Add(this.connections);
             this.Controls.Add(this.errors);
             this.Controls.Add(this.status);
             this.Controls.Add(this.strip);
@@ -151,6 +174,8 @@ namespace WindowedApplication
         private System.Windows.Forms.ColumnHeader errorColumn;
         private System.Windows.Forms.ToolStripStatusLabel loggerStatus;
         private System.Windows.Forms.TreeView statusTree;
+        private System.Windows.Forms.ColumnHeader connectionColumn;
+        private System.Windows.Forms.ListView connections;
     }
 }
 

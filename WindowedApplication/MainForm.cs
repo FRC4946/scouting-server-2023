@@ -138,6 +138,7 @@ namespace WindowedApplication
                 loggerStatus.Text = "Logger: Not Running";
                 errors.Items.Clear();
                 errors.Items.Add("Status: Not Running");
+                connections.Items.Clear();
 
                 // tree nodes
                 _AppRunning.Text = "Status: Not Running";
@@ -202,6 +203,7 @@ namespace WindowedApplication
                     _LoggerRunning.Text = "Logger: Not Running";
                 }
 
+                // errors
                 errors.BeginUpdate();
                 errors.Items.Clear();
                 if (Manager == null)
@@ -216,6 +218,18 @@ namespace WindowedApplication
                     }
                 }
                 errors.EndUpdate();
+
+                // connections
+                connections.BeginUpdate();
+                connections.Items.Clear();
+                if (Manager != null)
+                {
+                    foreach (var b in Manager)
+                    {
+                        connections.Items.Add("Connection: " + b.DeviceName);
+                    }
+                }
+                connections.EndUpdate();
             }
             statusTree.EndUpdate();
         }
