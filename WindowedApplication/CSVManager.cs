@@ -93,6 +93,11 @@ namespace WindowedApplication
             }
         }
 
+        protected override void ConfigureInstance(BluetoothInstance i)
+        {
+            i.Timeout = TimeSpan.FromSeconds(3);
+        }
+
         protected override void WriteLog(string s)
         {
             ScoutingMessageBase m;
