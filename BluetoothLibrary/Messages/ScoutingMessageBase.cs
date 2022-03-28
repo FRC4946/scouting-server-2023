@@ -10,8 +10,36 @@ namespace BluetoothLibrary.Messages
     /// <summary>
     /// Base for a scouting message
     /// </summary>
-    public class ScoutingMessageBase
+    public abstract class ScoutingMessageBase
     {
+
+        /// <summary>
+        /// Creates a new scouting message from the specified csv
+        /// </summary>
+        /// <typeparam name="T">
+        /// type of scouting message to create
+        /// </typeparam>
+        /// <param name="csv">
+        /// csv to create scouting message with
+        /// </param>
+        /// <returns>
+        /// the created scouting message
+        /// </returns>
+        public static T FromCSV<T>(string csv) where T : ScoutingMessageBase, new()
+        {
+            var t = new T();
+            var fields = csv.Split(',');
+            var info = _GetScoutingProperties(typeof(T));
+            foreach (var p in info)
+            {
+                var index = (int)p.scouting.Index;
+                if (index < fields.Length)
+                    p.property.SetValue(t, fields[index]);
+                else
+                    throw new ArgumentException("Invalid CSV string passed to from CSV");
+            }
+            return t;
+        }
 
         /// <summary>
         /// Gets the scouting properties for this message base
@@ -39,25 +67,11 @@ namespace BluetoothLibrary.Messages
         /// <returns>
         /// the headers for this scouting message
         /// </returns>
-        private static string _GetHeaders(Type t)
+        private static IEnumerable<string> _GetHeaders(Type t)
         {
-            return _MakeCSV(_GetScoutingProperties(t)
+            return _GetScoutingProperties(t)
                 .OrderBy(x => x.scouting.Index)
-                .Select(x => x.scouting.Header));
-        }
-
-        /// <summary>
-        /// Makes the provided enumerable of strings into a CSV line
-        /// </summary>
-        /// <param name="s">
-        /// enumerable of strings
-        /// </param>
-        /// <returns>
-        /// CSV representation of strings
-        /// </returns>
-        private static string _MakeCSV(IEnumerable<string> s)
-        {
-            return s.Aggregate((a, b) => $"{a},{b}") + ",\n";
+                .Select(x => x.scouting.Header);
         }
 
         /// <summary>
@@ -69,7 +83,7 @@ namespace BluetoothLibrary.Messages
         /// <returns>
         /// the headers for this scouting message
         /// </returns>
-        public static string GetHeaders<T>() where T : ScoutingMessageBase
+        public static IEnumerable<string> GetHeaders<T>() where T : ScoutingMessageBase
         {
             return _GetHeaders(typeof(T));
         }
@@ -80,22 +94,36 @@ namespace BluetoothLibrary.Messages
         /// <returns>
         /// headers for this scouting message
         /// </returns>
-        public string GetHeaders()
+        public IEnumerable<string> GetHeaders()
         {
             return _GetHeaders(GetType());
         }
 
         /// <summary>
-        /// Gets the CSV representation of this scouting message
+        /// Gets the fields for this scouting message
         /// </summary>
         /// <returns>
-        /// CSV representation of this scouting message
+        /// Fields for this scouting message
         /// </returns>
-        public string GetCSV()
+        public IEnumerable<string> GetFields()
         {
-            return _MakeCSV(_GetScoutingProperties(GetType())
+            return _GetScoutingProperties(GetType())
                 .OrderBy(x => x.scouting.Index)
-                .Select(x => (string)x.property.GetValue(this)));
+                .Select(x => (string)x.property.GetValue(this));
+        }
+
+        /// <summary>
+        /// Gets the fields and header for this scouting message
+        /// </summary>
+        /// <returns>
+        /// enumerable of fields for this scouting message
+        /// </returns>
+        public IEnumerable<Field> GetFieldsAndHeader()
+        {
+            return _GetScoutingProperties(GetType())
+                .OrderBy(x => x.scouting.Index)
+                .Select(x => new Field(x.scouting.Header, 
+                (string)x.property.GetValue(this)));
         }
     }
 }
