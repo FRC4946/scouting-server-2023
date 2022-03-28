@@ -194,7 +194,19 @@ namespace BluetoothLibrary
         {
             var instance = new BluetoothInstance(this);
             _Instances.Add(instance);
+            ConfigureInstance(instance);
             instance.HandleConnection(c);
+        }
+
+        /// <summary>
+        /// Configures the provided instance
+        /// </summary>
+        /// <param name="i">
+        /// Bluetooth instance to configure before it handles a connection
+        /// </param>
+        protected virtual void ConfigureInstance(BluetoothInstance i)
+        {
+            
         }
 
         /// <summary>
