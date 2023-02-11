@@ -12,67 +12,91 @@ namespace WindowedApplication
     /// </summary>
     public class Message2022 : ScoutingMessageBase
     {
-        [ScoutingProperty(0, "Team_Number")]
+        [ScoutingProperty(0, "teamNumber")]
         public string TeamNumber { get; set; }
 
-        [ScoutingProperty(1, "Alliance_Colour")]
+        [ScoutingProperty(1, "allianceColor")]
         public string AllianceColour { get; set; }
 
-        [ScoutingProperty(2, "Match_Number")]
+        [ScoutingProperty(2, "matchNumber")]
         public string MatchNumber { get; set; }
 
-        [ScoutingProperty(3, "Scout_Name")]
+        [ScoutingProperty(3, "scoutName")]
         public string ScoutName { get; set; }
 
-        [ScoutingProperty(4, "Crossed_Auto_Line")]
-        public string CrossedAutoLine { get; set; }
+        [ScoutingProperty(4, "leftCommunity")]
+        public string LeftCommunity { get; set; }
 
-        [ScoutingProperty(5, "Auto_Balls")]
-        public string AutoBalls { get; set; }
+        [ScoutingProperty(5, "autoConesTop")]
+        public string AutoConesTop { get; set; }
 
-        [ScoutingProperty(6, "Auto_Balls_Shot")]
-        public string AutoBallsShot { get; set; }
+        [ScoutingProperty(6, "autoConesMid")]
+        public string AutoConesMid { get; set; }
 
-        [ScoutingProperty(7, "Far_Balls")]
-        public string FarBalls { get; set; }
+        [ScoutingProperty(7, "autoConesBot")]
+        public string AutoConesBot { get; set; }
 
-        [ScoutingProperty(8, "Far_Balls_Shot")]
-        public string FarBallsShot { get; set; }
+        [ScoutingProperty(8, "autoCubesTop")]
+        public string AutoCubesTop { get; set; }
 
-        [ScoutingProperty(9, "Tarmac_Balls")]
-        public string TarmacBalls { get; set; }
+        [ScoutingProperty(9, "autoCubesMid")]
+        public string AutoCubesMid { get; set; }
 
-        [ScoutingProperty(10, "Tarmac_Balls_Shot")]
-        public string TarmacBallsShot { get; set; }
+        [ScoutingProperty(10, "autoCubesBot")]
+        public string AutoCubesBot { get; set; }
 
-        [ScoutingProperty(11, "Close_Balls")]
-        public string CloseBalls { get; set; }
+        [ScoutingProperty(11, "conesTop")]
+        public string ConesTop { get; set; }
 
-        [ScoutingProperty(12, "Close_Balls_Shot")]
-        public string CloseBallsShot { get; set; }
+        [ScoutingProperty(12, "conesMid")]
+        public string ConesMid { get; set; }
 
-        [ScoutingProperty(13, "Protected_Zone_Balls")]
-        public string ProtectedZoneBalls { get; set; }
+        [ScoutingProperty(13, "conesBot")]
+        public string ConesBot { get; set; }
 
-        [ScoutingProperty(14, "Protected_Zone_Balls_Shot")]
-        public string ProtectedZoneBallsShot { get; set; }
+        [ScoutingProperty(14, "cubesTop")]
+        public string CubesTop { get; set; }
 
-        [ScoutingProperty(15, "Active_Defence_Time")]
-        public string ActiveDefenceTime { get; set; }
+        [ScoutingProperty(15, "cubesMid")]
+        public string CubesMid { get; set; }
 
-        [ScoutingProperty(16, "Defence_Time")]
-        public string DefenceTime { get; set; }
+        [ScoutingProperty(16, "cubesBot")]
+        public string CubesBot { get; set; }
 
-        [ScoutingProperty(17, "Defended_Teams")]
-        public string DefendedTeams { get; set; }
+        [ScoutingProperty(17, "autoDocked")]
+        public string AutoDocked { get; set; }
 
-        [ScoutingProperty(18, "Climb_Time")]
-        public string Climb_Time { get; set; }
+        [ScoutingProperty(18, "autoEngaged")]
+        public string AutoEngaged { get; set; }
 
-        [ScoutingProperty(19, "Rung_Level")]
-        public string RungLevel { get; set; }
+        [ScoutingProperty(19, "docked")]
+        public string Docked { get; set; }
 
-        [ScoutingProperty(20, "Foul_Count")]
-        public string FoulCount { get; set; }
+        [ScoutingProperty(20, "engaged")]
+        public string Engaged { get; set; }
+
+        [ScoutingProperty(21, "park")]
+        public string Park { get; set; }
+
+        [ScoutingProperty(22, "endgameTime")]
+        public string EndgameTime { get; set; }
+
+        [ScoutingProperty(23, "opponentA")]
+        public string OpponentA { get; set; }
+
+        [ScoutingProperty(20, "opponentADefenceTime")]
+        public string OpponentADefenceTime { get; set; }
+
+        [ScoutingProperty(20, "opponentB")]
+        public string OpponentB { get; set; }
+
+        [ScoutingProperty(20, "engaged")]
+        public string OpponentBDefenceTime { get; set; }
+
+        [ScoutingProperty(20, "opponentC")]
+        public string OpponentC { get; set; }
+
+        [ScoutingProperty(20, "opponentCDefenceTime")]
+        public string OpponentCDefenceTime { get; set; }
     }
 }

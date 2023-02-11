@@ -36,12 +36,14 @@ namespace WindowedApplication
             this.loggerStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.strip = new System.Windows.Forms.MenuStrip();
             this.run = new System.Windows.Forms.ToolStripMenuItem();
+            this.GetSchedule = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.errors = new System.Windows.Forms.ListView();
             this.errorColumn = new System.Windows.Forms.ColumnHeader();
             this.statusTree = new System.Windows.Forms.TreeView();
             this.connectionColumn = new System.Windows.Forms.ColumnHeader();
             this.connections = new System.Windows.Forms.ListView();
+            this.GetMatchData = new System.Windows.Forms.ToolStripMenuItem();
             this.status.SuspendLayout();
             this.strip.SuspendLayout();
             this.SuspendLayout();
@@ -52,39 +54,49 @@ namespace WindowedApplication
             this.status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.managerStatus,
             this.loggerStatus});
-            this.status.Location = new System.Drawing.Point(0, 424);
+            this.status.Location = new System.Drawing.Point(0, 460);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(800, 26);
+            this.status.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
+            this.status.Size = new System.Drawing.Size(937, 22);
             this.status.TabIndex = 0;
             // 
             // managerStatus
             // 
             this.managerStatus.Name = "managerStatus";
-            this.managerStatus.Size = new System.Drawing.Size(140, 20);
+            this.managerStatus.Size = new System.Drawing.Size(113, 17);
             this.managerStatus.Text = "Server: Not Running";
             // 
             // loggerStatus
             // 
             this.loggerStatus.Name = "loggerStatus";
-            this.loggerStatus.Size = new System.Drawing.Size(146, 20);
+            this.loggerStatus.Size = new System.Drawing.Size(118, 17);
             this.loggerStatus.Text = "Logger: Not Running";
             // 
             // strip
             // 
             this.strip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.run});
+            this.run,
+            this.GetSchedule,
+            this.GetMatchData});
             this.strip.Location = new System.Drawing.Point(0, 0);
             this.strip.Name = "strip";
-            this.strip.Size = new System.Drawing.Size(800, 28);
+            this.strip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.strip.Size = new System.Drawing.Size(937, 24);
             this.strip.TabIndex = 2;
             this.strip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.strip_ItemClicked);
             // 
             // run
             // 
             this.run.Name = "run";
-            this.run.Size = new System.Drawing.Size(53, 24);
+            this.run.Size = new System.Drawing.Size(43, 20);
             this.run.Text = "RUN";
+            // 
+            // GetSchedule
+            // 
+            this.GetSchedule.Name = "GetSchedule";
+            this.GetSchedule.Size = new System.Drawing.Size(88, 20);
+            this.GetSchedule.Text = "Get Schedule";
             // 
             // refreshTimer
             // 
@@ -98,10 +110,10 @@ namespace WindowedApplication
             this.errors.Dock = System.Windows.Forms.DockStyle.Left;
             this.errors.FullRowSelect = true;
             this.errors.GridLines = true;
-            this.errors.HideSelection = false;
-            this.errors.Location = new System.Drawing.Point(0, 28);
+            this.errors.Location = new System.Drawing.Point(0, 24);
+            this.errors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.errors.Name = "errors";
-            this.errors.Size = new System.Drawing.Size(355, 396);
+            this.errors.Size = new System.Drawing.Size(311, 436);
             this.errors.TabIndex = 3;
             this.errors.UseCompatibleStateImageBehavior = false;
             this.errors.View = System.Windows.Forms.View.Details;
@@ -114,10 +126,12 @@ namespace WindowedApplication
             // statusTree
             // 
             this.statusTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.statusTree.Location = new System.Drawing.Point(355, 28);
+            this.statusTree.Location = new System.Drawing.Point(311, 24);
+            this.statusTree.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.statusTree.Name = "statusTree";
-            this.statusTree.Size = new System.Drawing.Size(445, 191);
+            this.statusTree.Size = new System.Drawing.Size(626, 281);
             this.statusTree.TabIndex = 4;
+            this.statusTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.statusTree_AfterSelect);
             // 
             // connectionColumn
             // 
@@ -131,25 +145,32 @@ namespace WindowedApplication
             this.connections.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.connections.FullRowSelect = true;
             this.connections.GridLines = true;
-            this.connections.HideSelection = false;
-            this.connections.Location = new System.Drawing.Point(355, 219);
+            this.connections.Location = new System.Drawing.Point(311, 305);
+            this.connections.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.connections.Name = "connections";
-            this.connections.Size = new System.Drawing.Size(445, 205);
+            this.connections.Size = new System.Drawing.Size(626, 155);
             this.connections.TabIndex = 5;
             this.connections.UseCompatibleStateImageBehavior = false;
             this.connections.View = System.Windows.Forms.View.Details;
             // 
+            // GetMatchData
+            // 
+            this.GetMatchData.Name = "GetMatchData";
+            this.GetMatchData.Size = new System.Drawing.Size(101, 20);
+            this.GetMatchData.Text = "Get Match Data";
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(937, 482);
             this.Controls.Add(this.statusTree);
             this.Controls.Add(this.connections);
             this.Controls.Add(this.errors);
             this.Controls.Add(this.status);
             this.Controls.Add(this.strip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "Scouting Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -176,6 +197,8 @@ namespace WindowedApplication
         private System.Windows.Forms.TreeView statusTree;
         private System.Windows.Forms.ColumnHeader connectionColumn;
         private System.Windows.Forms.ListView connections;
+        private System.Windows.Forms.ToolStripMenuItem GetSchedule;
+        private System.Windows.Forms.ToolStripMenuItem GetMatchData;
     }
 }
 

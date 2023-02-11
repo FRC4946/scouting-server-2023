@@ -43,6 +43,12 @@ namespace WindowedApplication
             {
                 // run button clicked
                 run_Clicked(e.ClickedItem);
+            } else if (e.ClickedItem.Name == "GetSchedule")
+            {
+                GetSchedule_clicked(e.ClickedItem);
+            } else
+            {
+                GetMatchData_clicked(e.ClickedItem);
             }
         }
 
@@ -55,6 +61,11 @@ namespace WindowedApplication
         private bool _Running()
         {
             return _DesiredRunning;
+        }
+
+        private void statusTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -298,6 +309,54 @@ namespace WindowedApplication
                 _Stop();
             }
             _UpdateStatus();
+        }
+
+        private void GetSchedule_clicked(ToolStripItem e)
+        {
+            if (!_Running())
+            {
+                using (var d = new SaveFileDialog())
+                {
+                    d.Filter = "JevaScript Object Notation (*.json)|*json";
+                    if (d.ShowDialog() == DialogResult.OK)
+                    {
+                        FIRSTAPIManager api = new FIRSTAPIManager();
+                        string apiToken = Microsoft.VisualBasic.Interaction.InputBox("Input API token here. If you need it, ask Sam.", "API Token", "null");
+                        if (apiToken != null)
+                        {
+                            apiToken = Convert.ToBase64String(Encoding.UTF8.GetBytes(apiToken));
+                        }
+                        string eventCode = Microsoft.VisualBasic.Interaction.InputBox("Input Event Code here. If you need it, ask Sam.", "Event Code", "null");
+                        if (eventCode != null && apiToken != null)
+                        {
+                            string sc = api._getSchedule(apiToken, eventCode).ToString();
+                            File.WriteAllText(d.FileName, sc);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void GetMatchData_clicked(ToolStripItem e) { if (!_Running())
+            using (var d = new SaveFileDialog()) 
+            {
+                d.Filter = "JevaScript Object Notation (*.json)|*json";
+                if (d.ShowDialog() == DialogResult.OK)
+                {
+                    FIRSTAPIManager api = new FIRSTAPIManager();
+                    string apiToken = Microsoft.VisualBasic.Interaction.InputBox("Input API token here. If you need it, ask Sam.", "API Token", "null");
+                    if (apiToken != null)
+                    {
+                        apiToken = Convert.ToBase64String(Encoding.UTF8.GetBytes(apiToken));
+                    }
+                    string eventCode = Microsoft.VisualBasic.Interaction.InputBox("Input Event Code here. If you need it, ask Sam.", "Event Code", "null");
+                    if (eventCode != null && apiToken != null)
+                    {
+                        string sc = api._getMatchData(apiToken, eventCode).ToString();
+                        File.WriteAllText(d.FileName, sc);
+                    }
+                }
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
