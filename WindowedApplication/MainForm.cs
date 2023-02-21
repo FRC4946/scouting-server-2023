@@ -337,7 +337,7 @@ namespace WindowedApplication
             }
         }
 
-        private void GetMatchData_clicked(ToolStripItem e) { if (!_Running())
+        private async void GetMatchData_clicked(ToolStripItem e) { if (!_Running())
             using (var d = new SaveFileDialog()) 
             {
                 d.Filter = "JevaScript Object Notation (*.json)|*json";
@@ -352,7 +352,8 @@ namespace WindowedApplication
                     string eventCode = Microsoft.VisualBasic.Interaction.InputBox("Input Event Code here. If you need it, ask Sam.", "Event Code", "null");
                     if (eventCode != null && apiToken != null)
                     {
-                        string sc = api._getMatchData(apiToken, eventCode).ToString();
+                            api._getMatchData(apiToken, eventCode).Wait();
+                            string sc = api._getMatchData(apiToken, eventCode);
                         File.WriteAllText(d.FileName, sc);
                     }
                 }
