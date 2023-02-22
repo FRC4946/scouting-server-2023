@@ -84,19 +84,31 @@ namespace WindowedApplication
         [ScoutingProperty(23, "opponentA")]
         public string OpponentA { get; set; }
 
-        [ScoutingProperty(20, "opponentADefenceTime")]
+        [ScoutingProperty(24, "opponentADefenceTime")]
         public string OpponentADefenceTime { get; set; }
 
-        [ScoutingProperty(20, "opponentB")]
+        [ScoutingProperty(25, "opponentB")]
         public string OpponentB { get; set; }
 
-        [ScoutingProperty(20, "engaged")]
+        [ScoutingProperty(26, "OpponentBDefenceTime")]
         public string OpponentBDefenceTime { get; set; }
 
-        [ScoutingProperty(20, "opponentC")]
+        [ScoutingProperty(27, "opponentC")]
         public string OpponentC { get; set; }
 
-        [ScoutingProperty(20, "opponentCDefenceTime")]
+        [ScoutingProperty(28, "opponentCDefenceTime")]
         public string OpponentCDefenceTime { get; set; }
+
+        [ScoutingProperty(28, "loadingTime")]
+        public string loadingTime { get; set; }
+
+        [ScoutingProperty(28, "transportTime")]
+        public string transportTime { get; set; }
+
+        [ScoutingProperty(28, "communityTime")]
+        public string communityTime { get; set; }
+
+        [ScoutingProperty(28, "startingPosition")]
+        public string startingPosition { get; set; }
     }
 }
