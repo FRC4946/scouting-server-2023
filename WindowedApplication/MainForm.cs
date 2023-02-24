@@ -1,4 +1,5 @@
 ﻿using BluetoothLibrary;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,10 @@ namespace WindowedApplication
 
         private TreeNode _Application, _Bluetooth, _Logging, _AppRunning, _BluetoothEnabled, _MAC, _ListenerRunning, _GUID,
             _LogFile, _LoggerRunning;
+        private FIRSTAPIManager API => _api;
+
+        FIRSTAPIManager _api;
+
 
         public MainForm()
         {
@@ -311,7 +316,7 @@ namespace WindowedApplication
             _UpdateStatus();
         }
 
-        private void GetSchedule_clicked(ToolStripItem e)
+        private async void GetSchedule_clicked(ToolStripItem e)
         {
             if (!_Running())
             {
@@ -320,7 +325,6 @@ namespace WindowedApplication
                     d.Filter = "JevaScript Object Notation (*.json)|*json";
                     if (d.ShowDialog() == DialogResult.OK)
                     {
-                        FIRSTAPIManager api = new FIRSTAPIManager();
                         string apiToken = Microsoft.VisualBasic.Interaction.InputBox("Input API token here. If you need it, ask Sam.", "API Token", "null");
                         if (apiToken != null)
                         {
@@ -329,21 +333,21 @@ namespace WindowedApplication
                         string eventCode = Microsoft.VisualBasic.Interaction.InputBox("Input Event Code here. If you need it, ask Sam.", "Event Code", "null");
                         if (eventCode != null && apiToken != null)
                         {
-                            string sc = api._getSchedule(apiToken, eventCode).ToString();
-                            File.WriteAllText(d.FileName, sc);
+                            RestResponse sc = await _api._getSchedule(apiToken, eventCode);
+                            File.WriteAllText(d.FileName, sc.Content);
                         }
                     }
                 }
             }
         }
 
-        private async void GetMatchData_clicked(ToolStripItem e) { if (!_Running())
+        private async void GetMatchData_clicked(ToolStripItem e) {
+            _api = new FIRSTAPIManager();
             using (var d = new SaveFileDialog()) 
             {
                 d.Filter = "JevaScript Object Notation (*.json)|*json";
                 if (d.ShowDialog() == DialogResult.OK)
                 {
-                    FIRSTAPIManager api = new FIRSTAPIManager();
                     string apiToken = Microsoft.VisualBasic.Interaction.InputBox("Input API token here. If you need it, ask Sam.", "API Token", "null");
                     if (apiToken != null)
                     {
@@ -352,9 +356,8 @@ namespace WindowedApplication
                     string eventCode = Microsoft.VisualBasic.Interaction.InputBox("Input Event Code here. If you need it, ask Sam.", "Event Code", "null");
                     if (eventCode != null && apiToken != null)
                     {
-                            api._getMatchData(apiToken, eventCode).Wait();
-                            string sc = api._getMatchData(apiToken, eventCode);
-                        File.WriteAllText(d.FileName, sc);
+                        RestResponse sc = await _api._getMatchData(apiToken, eventCode);
+                        File.WriteAllText(d.FileName, sc.Content);
                     }
                 }
             }

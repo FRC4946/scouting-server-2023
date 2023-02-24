@@ -99,16 +99,16 @@ namespace WindowedApplication
         [ScoutingProperty(28, "opponentCDefenceTime")]
         public string OpponentCDefenceTime { get; set; }
 
-        [ScoutingProperty(28, "loadingTime")]
+        [ScoutingProperty(29, "loadingTime")]
         public string loadingTime { get; set; }
 
-        [ScoutingProperty(28, "transportTime")]
+        [ScoutingProperty(30, "transportTime")]
         public string transportTime { get; set; }
 
-        [ScoutingProperty(28, "communityTime")]
+        [ScoutingProperty(31, "communityTime")]
         public string communityTime { get; set; }
 
-        [ScoutingProperty(28, "startingPosition")]
+        [ScoutingProperty(32, "startingPosition")]
         public string startingPosition { get; set; }
     }
 }
